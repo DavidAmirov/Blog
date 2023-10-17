@@ -1,0 +1,17 @@
+{% extends "blog\base.html" %}
+
+{% block title %} Рекомендовать пост {% endblock %}
+
+{% block content %}
+    {% if sent %}
+        <h1>Письмо успешно отправлено</h1>
+        <p> {{ post.title }} рекомендовано {{ form.cleaned_data.to }}</p>
+    {% else %}
+        <h1>Рекомендовать {{ post.title }}</h1>
+        <form method='post'>
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type='submit' value='Отправить письмо'>
+        </form>
+    {% endif %}
+{% endblock %}
